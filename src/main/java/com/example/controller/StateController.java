@@ -48,4 +48,20 @@ public class StateController {
             return new ResponseEntity<State>(HttpStatus.NO_CONTENT);
         }
     }
+
+    @RequestMapping(
+            value = "/api/state",
+            method = RequestMethod.DELETE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<State> removeCity(@RequestBody State state)
+    {
+        try{
+            stateRepo.delete(state);
+            return new ResponseEntity<State>(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<State>(HttpStatus.NOT_ACCEPTABLE);
+        }
+
+    }
 }

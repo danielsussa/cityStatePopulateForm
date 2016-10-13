@@ -23,9 +23,13 @@
             <table class="table table-striped">
                 <tr>
                     <th>Estado</th>
+                    <th></th>
                 </tr>
                 <tr ng-repeat="state in states">
                     <td>{{state.name}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="deleteState(state,$index)">D</button>
+                    </td>
                 </tr>
             </table>
         </div>

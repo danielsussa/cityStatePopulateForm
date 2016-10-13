@@ -57,6 +57,25 @@ angular.module("app").controller("cityStateCtr",function ($scope, $http) {
         })
     }
 
+    $scope.deleteState = function (state,index) {
+        console.log(state);
+        //item.product.id = getIdByName($scope.categorys,product.category.name);
+        $http({
+            method: 'DELETE',
+            url: "/api/state",
+            data: state,
+            headers: {'Content-Type': 'application/json;charset=utf-8'}
+        }).success(function (data,status) {
+            console.log(status);
+            if(status == 200){
+                $scope.states.splice(index,1);
+                delete $scope.state;
+            }else{
+                console.log("Está errado!");
+            }
+        })
+    }
+
 
     var loadState = function () {
         $http.get("/api/state").success(function (data,status) {
