@@ -1,6 +1,7 @@
 package com.example.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
 
 /**
@@ -21,6 +22,7 @@ public class City {
 
     @OneToOne
     @JoinColumn(name = "state")
+    @NotNull
     private State state;
 
     public String getName() {

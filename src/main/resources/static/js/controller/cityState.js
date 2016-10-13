@@ -38,6 +38,25 @@ angular.module("app").controller("cityStateCtr",function ($scope, $http) {
         })
     }
 
+    $scope.deleteCity = function (city,index) {
+        //item.product.id = getIdByName($scope.categorys,product.category.name);
+        console.log(city);
+        $http({
+            method: 'DELETE',
+            url: "/api/city",
+            data: city,
+            headers: {'Content-Type': 'application/json;charset=utf-8'}
+        }).success(function (data,status) {
+            console.log(status);
+            if(status == 200){
+                $scope.cities.splice(index,1);
+                delete $scope.city;
+            }else{
+                console.log("Está errado!");
+            }
+        })
+    }
+
 
     var loadState = function () {
         $http.get("/api/state").success(function (data,status) {
