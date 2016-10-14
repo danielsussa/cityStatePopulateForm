@@ -14,7 +14,7 @@ angular.module("app").controller("cityStateCtr",function ($scope, $http) {
         }).success(function (data,status) {
             if(status == 201){
                 $scope.states.push(data);
-                delete $scope.state;
+                delete $scope.newState;
             }else{
                 console.log("Está errado!");
             }
@@ -31,7 +31,7 @@ angular.module("app").controller("cityStateCtr",function ($scope, $http) {
         }).success(function (data,status) {
             if(status == 201){
                 $scope.cities.push(data);
-                delete $scope.city;
+                delete $scope.newCity;
             }else{
                 console.log("Está errado!");
             }
@@ -74,6 +74,12 @@ angular.module("app").controller("cityStateCtr",function ($scope, $http) {
                 console.log("Está errado!");
             }
         })
+    }
+
+    $scope.getCity = function (search) {
+        $http.get("/api/state/"+search.state.id).success(function (data,status) {
+            $scope.setCities = data;
+        });
     }
 
 

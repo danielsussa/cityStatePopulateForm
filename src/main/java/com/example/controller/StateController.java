@@ -1,16 +1,16 @@
 package com.example.controller;
 
+import com.example.model.City;
 import com.example.model.State;
+import com.example.repository.CityRepo;
 import com.example.repository.StateRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,6 +24,9 @@ public class StateController {
     @Autowired
     StateRepo stateRepo;
 
+    @Autowired
+    CityRepo cityRepo;
+
     @RequestMapping(
             value = "/api/state",
             method = RequestMethod.GET,
@@ -32,6 +35,16 @@ public class StateController {
     public ResponseEntity<Collection<State>> getState(){
         List<State> stateList = stateRepo.findAll();
         return new ResponseEntity<Collection<State>>(stateList, HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            value = "/api/state/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Collection<City>> getStateCities(@PathVariable(value="id") BigInteger id){
+        List<City> cityList = cityRepo.findByStateId(id);
+        return new ResponseEntity<Collection<City>>(cityList, HttpStatus.OK);
     }
 
     @RequestMapping(
