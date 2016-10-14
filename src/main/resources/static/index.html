@@ -62,7 +62,7 @@
             <form>
                 <div class="form-group">
                     <label for="inputState">Estado</label>
-                    <input type="text" class="form-control" id="inputState" ng-model="newState.name" placeholder="Estado" ng-change="form.name=form.name.toUpperCase();">
+                    <input type="text" class="form-control" id="inputState" ng-model="newState.name" placeholder="Estado" ng-change="newState.name=newState.name.toUpperCase();">
                 </div>
                 <button type="submit" ng-click="saveState(newState)" class="btn btn-default btn-block">Cadastrar</button>
             </form>
