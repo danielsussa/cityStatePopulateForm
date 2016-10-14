@@ -17,9 +17,7 @@ public class SimpleFormApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		State state1 = new State();
-		state1.setName("SP");
-		stateRepo.save(state1);
+
 	}
 
 }
